@@ -16,9 +16,14 @@ export const CurrentState = () => {
         }}>Reset</button>
         <button onClick={() => {
           actorRef.send({
-            type: 'start'
+            type: 'starting'
           })
-        }}>Next</button>
+        }}>Move to Starting</button>
+        <button onClick={() => {
+          actorRef.send({
+            type: 'success'
+          })
+        }}>Move to Success</button>
       </div>
     </div>
   )

@@ -10,19 +10,32 @@ const myMachine = createMachine({
   context: initialContext,
   id: 'myMachine',
   initial: 'IDLE',
-  on: {
-    reset: {
-      target: '.IDLE',
-      actions: assign(() => initialContext),
-    },
-  },
+  // on: {
+  //   reset: {
+  //     target: '.IDLE',
+  //     actions: assign(() => initialContext),
+  //   },
+  // },
   states: {
+    on: {
+      reset: {
+        target: '.IDLE',
+        actions: assign(() => initialContext),
+      }
+    },
     IDLE: {
       on: {
-        start: {
-          target: 'SUCCESS',
+        starting: {
+          target: 'STARTING',
         },
       },
+    },
+    STARTING: {
+      on: {
+        success: {
+          target: 'SUCCESS'
+        }
+      }
     },
     SUCCESS: {
       type: 'final',
